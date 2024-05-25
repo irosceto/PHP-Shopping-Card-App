@@ -5,6 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="styles.css">
+ <style>
+        html, body, .vh-100, .mask, .container, .row, .col-12, .card, .card-body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .register-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .register-card {
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .register-card h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+label {
+    display: block; 
+    float: left; 
+     width: 100px;
+}
+    </style>
 </head>
 <body>
 <?php
@@ -23,18 +55,36 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$sorgu="CREATE TABLE users( id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL
+)";
+if ($conn->query($sorgu) === TRUE) {
+    echo "Table created successfully";
+} else {
+    error_log("Error creating table: " . $conn->error);
+}
+
+
+if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email'])) {
+
 // Formdan gelen kullanıcı adı ve şifre
 $username = $_POST['username'];
 $password = $_POST['password'];
 $email=$_POST['email'];
 
-// Veritabanına ekleme sorgusu
-$sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+
+
+$sql = "INSERT INTO users (username, password , email)  VALUES ('$username', '$password','$email')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Registration successful";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
+}
+ } else {
+    error_log("Form data is missing");
 }
 
 $conn->close();
@@ -48,41 +98,38 @@ $conn->close();
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
+         <div class="register-container">
+    <div class="register-card">
               <h2 class="text-uppercase text-center mb-5">Create an account</h2>
               <form action="register.php" method="POST">
 
-              <form>
+              
 
                 <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example1cg">Your Name</label>
-                </div>
-
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example3cg">Your Email</label>
+                  <input type="text" id="username" name="username" class="form-control form-control-lg" />
+                  <label class="form-label" for="username">Your Name</label>
                 </div>
 
                 <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example4cg">Password</label>
+                  <input type="email" id="email" name="email" class="form-control form-control-lg" />
+                  <label class="form-label" for="email">Your Email</label>
                 </div>
 
                 <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example4cdg">Repeat your password</label>
+                  <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                  <label class="form-label" for="password">Password</label>
                 </div>
 
-                <div class="form-check d-flex justify-content-center mb-5">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                  <label class="form-check-label" for="form2Example3g">
-                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
-                  </label>
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <input type="password" id="repeat_password" class="form-control form-control-lg" />
+                  <label class="form-label" for="repeat_password">Repeat your password</label>
                 </div>
+
+              
 
                 <div class="d-flex justify-content-center">
-                  <button  type="button" data-mdb-button-init
-                    data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                  <button  type="submit" 
+                     class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
