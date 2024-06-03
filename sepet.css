@@ -1,0 +1,81 @@
+    table{
+        font-family: sans-serif;
+        display: inline-block;
+        margin-left: 150px;
+        margin-right: 70px;
+        margin-top: 30px;
+        border-radius: 10px;
+    }
+    .container{
+        text-align: center;
+    }
+    tr:nth-child(even) {
+        background-color: #d0d0d0;
+    }
+    .product {
+        margin-left: 450px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+        font-family: sans-serif;
+        text-align: center;
+        max-width: 1000px;
+    }
+    .headertext{
+        font-size: 30px;
+    }
+    .push_button {
+        position: relative;
+        width:100px;
+        height:40px;
+        text-align:center;
+        color:#FFF;
+        text-decoration:none;
+        line-height:43px;
+        font-family:sans-serif;
+        display: block;
+        margin: 30px;
+    }
+    .push_button:before {
+        -webkit-border-radius:5px;
+        -moz-border-radius:5px;
+        border-radius:5px;
+
+
+
+        position: absolute;
+        content: "";
+        left: -6px; right: -6px;
+        top: -6px; bottom: -10px;
+        z-index: -1;
+    }
+
+    .red {
+        text-shadow:-1px -1px 0 #A84155;
+        background: #D25068;
+        border:1px solid #D25068;
+
+        background-image:-webkit-linear-gradient(top, #F66C7B, #D25068);
+        background-image:-moz-linear-gradient(top, #F66C7B, #D25068);
+        background-image:-ms-linear-gradient(top, #F66C7B, #D25068);
+        background-image:-o-linear-gradient(top, #F66C7B, #D25068);
+        background-image:linear-gradient(to bottom, #F66C7B, #D25068);
+
+        -webkit-border-radius:5px;
+        -moz-border-radius:5px;
+        border-radius:5px;
+
+        -webkit-box-shadow:0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #AD4257, 0 4px 2px rgba(0, 0, 0, .5);
+        -moz-box-shadow:0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #AD4257, 0 4px 2px rgba(0, 0, 0, .5);
+        box-shadow:0 1px 0 rgba(255, 255, 255, .5) inset, 0 -1px 0 rgba(255, 255, 255, .1) inset, 0 4px 0 #AD4257, 0 4px 2px rgba(0, 0, 0, .5);
+    }
+
+    .red:hover {
+        background: #F66C7B;
+        background-image:-webkit-linear-gradient(top, #D25068, #F66C7B);
+        background-image:-moz-linear-gradient(top, #D25068, #F66C7B);
+        background-image:-ms-linear-gradient(top, #D25068, #F66C7B);
+        background-image:-o-linear-gradient(top, #D25068, #F66C7B);
+        background-image:linear-gradient(top, #D25068, #F66C7B);
+    }
